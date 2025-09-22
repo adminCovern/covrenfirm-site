@@ -3,36 +3,48 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Brain, Shield, Sparkles } from 'lucide-react';
+import {
+  Brain,
+  Shield,
+  Sparkles,
+  Twitter,
+  Linkedin,
+  ArrowUpRight,
+  Mail,
+  Phone,
+  MapPin,
+} from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  // Fixed routes to match your app structure
   const footerLinks = {
     sovereignty: [
       { name: 'SOVREN AI Platform', href: '/services/sovren-ai' },
       { name: 'Sovereign Manifesto', href: '/manifesto' },
-      { name: 'Consciousness Experience', href: '/consciousness' },
-      { name: 'Qualification Process', href: '/sovereign-qualification' }
+      // This used to be “Consciousness Experience”; point it to your demos/resources hub
+      { name: 'Consciousness Experience', href: '/resources/demos' },
+      { name: 'Qualification Process', href: '/sovereign-qualification' },
     ],
     services: [
       { name: 'AI Consulting', href: '/services/ai-consulting' },
       { name: 'Custom AI Development', href: '/services/custom-ai-development' },
       { name: 'Digital Transformation', href: '/services/digital-transformation' },
-      { name: 'Innovation Lab', href: '/services/innovation-lab' }
+      { name: 'Innovation Lab', href: '/services/innovation-lab' }, // fixed spelling
     ],
     company: [
       { name: 'About Covren', href: '/about' },
-      { name: 'Our Philosophy', href: '/philosophy' },
-      { name: 'Founder', href: '/founder' },
-      { name: 'Case Studies', href: '/case-studies' }
+      { name: 'Our Philosophy', href: '/about/philosophy' },
+      { name: 'Founder', href: '/about/founder' },
+      { name: 'Case Studies', href: '/case-studies' },
     ],
     connect: [
       { name: 'Contact Command', href: '/contact' },
-      { name: 'Blog', href: '/blog' },
+      { name: 'Blog', href: '/resources/blog' },      // fixed path
       { name: 'Legal', href: '/legal' },
-      { name: 'Demo', href: '/demo' }
-    ]
+      { name: 'Demo', href: '/resources/demos' },     // fixed path
+    ],
   };
 
   const socialLinks = [
@@ -44,14 +56,13 @@ export default function Footer() {
     <footer className="relative bg-black border-t border-gray-800 mt-20">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute inset-0"
-          animate={{ 
-            backgroundPosition: ['0% 0%', '100% 100%'],
-          }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          animate={{ backgroundPosition: ['0% 0%', '100% 100%'] }}
+          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
           style={{
-            backgroundImage: `linear-gradient(45deg, transparent 48%, rgba(6, 182, 212, 0.1) 49%, rgba(6, 182, 212, 0.1) 51%, transparent 52%)`,
+            backgroundImage:
+              'linear-gradient(45deg, transparent 48%, rgba(6, 182, 212, 0.1) 49%, rgba(6, 182, 212, 0.1) 51%, transparent 52%)',
             backgroundSize: '30px 30px',
           }}
         />
@@ -64,11 +75,7 @@ export default function Footer() {
             {/* Brand Column */}
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center space-x-3 mb-6 group">
-                <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
-                  className="relative"
-                >
+                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }} className="relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-lg blur-md opacity-50 group-hover:opacity-100 transition-opacity" />
                   <div className="relative w-10 h-10 bg-black rounded-lg flex items-center justify-center border border-gray-800">
                     <Brain className="w-6 h-6 text-cyan-400" />
@@ -79,7 +86,7 @@ export default function Footer() {
                   <div className="text-cyan-400 text-xs font-mono">SOVEREIGN AI</div>
                 </div>
               </Link>
-              
+
               <p className="text-gray-400 text-sm mb-6">
                 Building sovereign digital intelligence for those who refuse to rent their future.
               </p>
@@ -105,7 +112,7 @@ export default function Footer() {
 
             {/* Links Columns */}
             <div className="lg:col-span-4 grid grid-cols-2 md:grid-cols-4 gap-8">
-              {/* Sovereignty Column */}
+              {/* Sovereignty */}
               <div>
                 <h3 className="text-cyan-400 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
                   <Shield className="w-4 h-4" />
@@ -126,7 +133,7 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Services Column */}
+              {/* Services */}
               <div>
                 <h3 className="text-purple-400 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
                   <Sparkles className="w-4 h-4" />
@@ -147,11 +154,9 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Company Column */}
+              {/* Company */}
               <div>
-                <h3 className="text-blue-400 font-bold text-sm uppercase tracking-wider mb-4">
-                  COMPANY
-                </h3>
+                <h3 className="text-blue-400 font-bold text-sm uppercase tracking-wider mb-4">COMPANY</h3>
                 <ul className="space-y-3">
                   {footerLinks.company.map((link) => (
                     <li key={link.name}>
@@ -167,11 +172,9 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Connect Column */}
+              {/* Connect */}
               <div>
-                <h3 className="text-green-400 font-bold text-sm uppercase tracking-wider mb-4">
-                  CONNECT
-                </h3>
+                <h3 className="text-green-400 font-bold text-sm uppercase tracking-wider mb-4">CONNECT</h3>
                 <ul className="space-y-3">
                   {footerLinks.connect.map((link) => (
                     <li key={link.name}>
@@ -196,7 +199,7 @@ export default function Footer() {
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-6 text-sm">
                 <a
-                  href="mailto:sovereign@covrenfirm.com"
+                  href="mailto:sovereignty@covrenfirm.com"
                   className="flex items-center space-x-2 text-gray-400 hover:text-cyan-400 transition-colors"
                 >
                   <Mail className="w-4 h-4" />
@@ -214,7 +217,7 @@ export default function Footer() {
                   <span>Global Sovereignty</span>
                 </div>
               </div>
-              
+
               <Link href="/sovereign-qualification">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -243,7 +246,7 @@ export default function Footer() {
                   Terms of Sovereignty
                 </Link>
               </div>
-              
+
               <div className="font-mono text-xs flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 BUILD: <span className="text-cyan-400">v3.0.0-SOVEREIGN</span>
