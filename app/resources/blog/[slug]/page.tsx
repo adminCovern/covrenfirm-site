@@ -1,4 +1,4 @@
-'use client';
+// NO "use client" here — this is a Server Component
 
 import Link from 'next/link';
 import { ConsciousPage } from '@/app/consciousness-engine';
@@ -14,7 +14,6 @@ const POSTS: Record<
     date: string;
     readTime: string;
     category: string;
-    hero?: string;
     paragraphs: string[];
   }
 > = {
@@ -76,9 +75,9 @@ const POSTS: Record<
 };
 
 export default async function BlogPostPage({
+  // Next 15 can pass params as a Promise during build; typing like this keeps TS happy
   params,
 }: {
-  // Next 15 can pass params as a Promise during build — type it accordingly:
   params: Promise<RouteParams>;
 }) {
   const { slug } = await params;
@@ -108,19 +107,21 @@ export default async function BlogPostPage({
             <ArrowLeft className="w-4 h-4" />
             Back
           </Link>
-          <button
-            className="inline-flex items-center gap-2 text-zinc-400 hover:text-zinc-200"
-            title="Share"
-            onClick={() => {
-              const url = typeof window !== 'undefined' ? window.location.href : '';
-              if (navigator?.clipboard && url) {
-                navigator.clipboard.writeText(url);
-              }
+          <form
+            action={async () => {
+              'use server';
+              // server no-op; we don’t expose clipboard here
             }}
           >
-            <Share2 className="w-4 h-4" />
-            Share
-          </button>
+            <button className="inline-flex items-center gap-2 text-zinc-400 hover:text-zinc-200" title="Share" type="button"
+              onClick={() => {
+                const url = typeof window !== 'undefined' ? window.location.href : '';
+                if (navigator?.clipboard && url) navigator.clipboard.writeText(url);
+              }}>
+              <Share2 className="w-4 h-4" />
+              Share
+            </button>
+          </form>
         </div>
 
         {/* Header */}
